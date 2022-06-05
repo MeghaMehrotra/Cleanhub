@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/order")
@@ -17,12 +19,12 @@ public class OrderController {
     private  IOrderService orderService;
 
     @GetMapping()
-    public ResponseEntity<MessageDTO<ResponseEntity<Order[]>>> getEmployee() {
+    public ResponseEntity<MessageDTO<List<Order>>> getCustomerOrders() {
 
-        ResponseEntity<Order[]> orders = orderService.fetchOrders();
+               List<Order> orderList =  orderService.fetchOrders();
 
         return new ResponseEntity<>(
-                new MessageDTO<>("Orders fetched successfully!!", orders, true), HttpStatus.OK);
+                new MessageDTO<>("Orders fetched successfully!!", orderList, true), HttpStatus.OK);
     }
 
 }

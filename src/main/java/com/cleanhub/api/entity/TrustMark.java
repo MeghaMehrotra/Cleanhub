@@ -1,26 +1,39 @@
 package com.cleanhub.api.entity;
 
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.io.Serializable;
-/**
- *
- * @author Megha Mehrotra
- *
- */
-public class Logo implements Serializable {
+
+@Entity
+public class TrustMark implements Serializable {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
 
 
-    String uuid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
+    private String uuid;
+
+    @Lob
     String directLink;
 
+    @Lob
     String thumbnailDirectLink;
+
     String fileName;
+
     Integer size;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * @return the uuid
@@ -30,8 +43,7 @@ public class Logo implements Serializable {
     }
 
     /**
-     * @param uuid
-     *            the uuid to set
+     * @param uuid the uuid to set
      */
     public void setUuid(String uuid) {
         this.uuid = uuid;
@@ -45,8 +57,7 @@ public class Logo implements Serializable {
     }
 
     /**
-     * @param directLink
-     *            the directLink to set
+     * @param directLink the directLink to set
      */
     public void setDirectLink(String directLink) {
         this.directLink = directLink;
@@ -60,8 +71,7 @@ public class Logo implements Serializable {
     }
 
     /**
-     * @param thumbnailDirectLink
-     *            the thumbnailDirectLink to set
+     * @param thumbnailDirectLink the thumbnailDirectLink to set
      */
     public void setThumbnailDirectLink(String thumbnailDirectLink) {
         this.thumbnailDirectLink = thumbnailDirectLink;
@@ -75,8 +85,7 @@ public class Logo implements Serializable {
     }
 
     /**
-     * @param fileName
-     *            the fileName to set
+     * @param fileName the fileName to set
      */
     public void setFileName(String fileName) {
         this.fileName = fileName;
@@ -90,8 +99,7 @@ public class Logo implements Serializable {
     }
 
     /**
-     * @param size
-     *            the size to set
+     * @param size the size to set
      */
     public void setSize(Integer size) {
         this.size = size;
