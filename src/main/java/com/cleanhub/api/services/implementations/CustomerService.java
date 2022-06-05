@@ -7,6 +7,7 @@ import com.cleanhub.api.services.interfaces.IOrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +44,9 @@ public class CustomerService implements ICustomerService {
 
     @Autowired
     private IHubRepository hubRepository;
+
+    @Value("customer.url")
+    String customerUrl;
 
     private static final Logger log = LoggerFactory.getLogger(CustomerService.class);
 
@@ -120,7 +124,7 @@ public class CustomerService implements ICustomerService {
             headers.add("user-agent", "Application");
             HttpEntity<String> entity = new HttpEntity<>(headers);
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<Customer> customerResponseEntity =  restTemplate.exchange("https://marketplace.cleanhub.com/api/public/orders?route="+route, HttpMethod.GET,entity,Customer.class);
+            ResponseEntity<Customer> customerResponseEntity =  restTemplate.exchange(customerUrl+route, HttpMethod.GET,entity,Customer.class);
             customer = customerResponseEntity.getBody();
             log.info("Fetched customer with uuid"+customer.getUuid()+"for route"+route);
         }

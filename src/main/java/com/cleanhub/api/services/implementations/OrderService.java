@@ -30,10 +30,10 @@ public class OrderService implements IOrderService {
         headers.add("user-agent", "Application");
         HttpEntity<String> entity = new HttpEntity<>(headers);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Order[]> orderDTO =  restTemplate.exchange("https://marketplace.cleanhub.com/api/public/orders/logos", HttpMethod.GET,entity,Order[].class);
+        ResponseEntity<Order[]> orderDTO =  restTemplate.exchange(orderApiUrl, HttpMethod.GET,entity,Order[].class);
         if(orderDTO != null && orderDTO.getBody() != null) {
-            Order[] oders = orderDTO.getBody();
-            orderList = Arrays.asList(oders);
+            Order[] incomingOrders = orderDTO.getBody();
+            orderList = Arrays.asList(incomingOrders);
         }
         return orderList;
     }
