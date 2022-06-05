@@ -8,6 +8,14 @@ Create a schema with name cleanhub in MYSQL before running the application.
 Below are the requirements to run this application on your system
 
 Java 1.8
+
+Intellij Idea
+
 Maven
+
 Github
+
+# Steps :- 
+Clone the code from 
+
 
