@@ -124,7 +124,7 @@ public class CustomerService implements ICustomerService {
             headers.add("user-agent", "Application");
             HttpEntity<String> entity = new HttpEntity<>(headers);
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<Customer> customerResponseEntity =  restTemplate.exchange(customerUrl+route, HttpMethod.GET,entity,Customer.class);
+            ResponseEntity<Customer> customerResponseEntity =  restTemplate.exchange("https://marketplace.cleanhub.com/api/public/orders?route="+route, HttpMethod.GET,entity,Customer.class);
             customer = customerResponseEntity.getBody();
             log.info("Fetched customer with uuid"+customer.getUuid()+"for route"+route);
         }
